@@ -10,13 +10,8 @@ class Token(object):
         self.col = col
 
     def __str__(self):
-        if(self.lex != ""):
+        if(self.lex != self.type):
             return '<%s, %s, %s, %s>' % (self.type, self.lex, self.row, self.col)
         else:
             return '<%s, %s, %s>' % (self.type, self.row, self.col)    
     
-
-token = Token("tk_cadena", "pene", 2,1)
-reserve_word = Token("if","",39,50)
-print(reserve_word)
-print(token)
