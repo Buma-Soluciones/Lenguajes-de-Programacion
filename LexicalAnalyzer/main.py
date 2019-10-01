@@ -63,7 +63,7 @@ if __name__ == '__main__':
         ("\\b(receive)\\b",     'receive'),
         ("\\b(rec)\\b",     'rec'),
         ("\\b(ref)\\b",     'ref'),
-        ("\\b(replay)\\b",     'replay'),
+        ("\\b(reply)\\b",     'reply'),
         ("\\b(resource)\\b",     'resource'),
         ("\\b(res)\\b",     'res'),
         ("\\b(return)\\b",     'return'),
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     ]
     
     lx = lexerAnalyzer.LexerAnalizer(rules)
-    f=open("entradas/prueba3.txt", "r")
+    f=open("entradas/prueba4.txt", "r")
     fline = f.readlines()
     row = 1
     for x in fline:
