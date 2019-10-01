@@ -10,7 +10,8 @@ class Token(object):
         self.col = col
 
     def __str__(self):
-        if(self.lex != self.type):
+        # if(self.lex != self.type):
+        if(self.type in ["tk_string", "tk_num", "id"]):
             return '<%s, %s, %s, %s>' % (self.type, self.lex, self.row, self.col)
         else:
             return '<%s, %s, %s>' % (self.type, self.row, self.col)    
