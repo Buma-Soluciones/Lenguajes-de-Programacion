@@ -3,6 +3,7 @@ import lexerAnalyzer
 
 if __name__ == '__main__':
     rules = [
+        
         ("global",          'global'),
         ("int",             'int'),
         ("getarg",          'getarg'),
@@ -21,12 +22,12 @@ if __name__ == '__main__':
         ("call",             'call'),
         ("cap",             'cap'),
         ("char",             'char'),
-        ("co",             'co'),
         ("const",             'const'),
+        ("co",             'co'),
         ("create",             'create'),
         ("destroy",             'destroy'),
-        ("do",             'do'),
         ("downto",             'downto'),
+        ("do",             'do'),
         ("else",             'else'),
         ("end",             'end'),
         ("enum",             'enum'),
@@ -39,8 +40,8 @@ if __name__ == '__main__':
         ("forward",        'forward'),
         ("high",        'high'),
         ("import",        'import'),
-        ("in",        'in'),
         ("initial",        'initial'),
+        ("in",        'in'),
         ("low",        'low'),
         ("mod",             'mod'),
         ("new",     'new'),
@@ -50,20 +51,20 @@ if __name__ == '__main__':
         ("oc",     'oc'),
         ("od",     'od'),
         ("on",     'on'),
-        ("op",     'op'),
         ("optype",     'optype'),
+        ("op",     'op'),
         ("or",     'or'),
-        ("proc",     'proc'),
         ("procedure",     'procedure'),
         ("process",     'process'),
+        ("proc",     'proc'),
         ("ptr",     'ptr'),
         ("real",     'real'),
-        ("rec",     'rec'),
         ("receive",     'receive'),
+        ("rec",     'rec'),
         ("ref",     'ref'),
         ("replay",     'replay'),
-        ("res",     'res'),
         ("resource",     'resource'),
+        ("res",     'res'),
         ("return",     'return'),
         ("returns",     'returns'),
         ("sem",     'sem'),
@@ -99,13 +100,13 @@ if __name__ == '__main__':
         (':',               'tk_dos_puntos'),
         (',',               'tk_coma'),
         (';',               'tk_ptocoma'),       
-        ('[a-zA-Z_]\w*',    'id'),
         ('\"(\\.|[^\\"])*\"',    'tk_string'),
         ("(#(.*?)[\r$]?\n).*",    'tk_comment'),
+        ('[a-zA-Z_]\w*',    'id'),
     ]
     
     lx = lexerAnalyzer.LexerAnalizer(rules)
-    f=open("entradas/prueba1.txt", "r")
+    f=open("entradas/prueba2.txt", "r")
     fline = f.readlines()
     row = 1
     for x in fline:
