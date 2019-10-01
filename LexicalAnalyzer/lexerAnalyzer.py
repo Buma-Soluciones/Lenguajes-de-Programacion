@@ -8,7 +8,7 @@ class LexerAnalizer(object):
         """ 
 
             rules:
-                diccionario de reglas donde cada regla es una expresión regular que define
+                arreglo de 2-tupla () de reglas donde cada regla es una expresión regular que define
                 un conjunto de tokens y la llave es el tipo de cada token
             
         """
