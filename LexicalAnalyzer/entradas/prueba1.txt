@@ -1,6 +1,6 @@
 global sizes 
    # matrix dimension, default 10
-   var N := 10 
+   var N := 10 # FFFF
    # number of processes, default 2
    var PR := 2 
    # strip size

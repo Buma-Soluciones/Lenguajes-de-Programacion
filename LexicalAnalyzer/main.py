@@ -14,22 +14,21 @@ if __name__ == '__main__':
         ("body",               'body'),
         ("stop",               'stop'),
         ("end",               'end'),
-        ("[+-]?[0-9]+(?:\.[0-9]+)?(?:[eE][+-][0-9]+)?",            'tk_num'),
-        ('\+',              'tk_mas'),
+        ("[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?",            'tk_num'),
+        ('\+',              'tk_suma'),
         ('->',               'tk_flecha'),
-        ('\-',              'tk_men'),
-        ('\*',              'tk_mul'),
+        ('\-',              'tk_resta'),
+        ('\*',              'tk_mult'),
         ('\/',              'tk_div'),
-        ('\(',              'tk_para'),
-        ('\)',              'tk_parc'),
+        ('\(',              'tk_par_izq'),
+        ('\)',              'tk_par_der'),
         (':=',              'tk_asign'),
-        ('!=',              'tk_noasign'),
+        ('!=',              'tk_diferente'),
         ('=',               'tk_igual'),  
-        (':',               'tk_dpuntos'),
-        (',',               'tk_dpuntos'),
-        (';',               'tk_dpuntos'),       
-        ('[a-zA-Z_]\w+',    'id'),
-        ('[a-zA-Z]',       'id'),
+        (':',               'tk_dos_puntos'),
+        (',',               'tk_coma'),
+        (';',               'tk_ptocoma'),       
+        ('[a-zA-Z_]\w*',    'id'),
         ('\"(\\.|[^\\"])*\"',    'tk_string'),
         ("(#(.*?)[\r$]?\n).*",    'tk_comment'),
     ]
@@ -45,7 +44,8 @@ if __name__ == '__main__':
             for tok in lx.tokens():
                 print(tok)
         except Exception as err:
-            print('LexerError at position %s' % err)
+            print(err)
+            break
         row= row+1
         
     f.close

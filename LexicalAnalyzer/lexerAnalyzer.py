@@ -22,8 +22,8 @@ class Lexer(object):
         self.rules = []
         for regex, type in rules:
             self.rules.append((re.compile(regex), type))
-        self.skip_whitespace = True
         self.re_ws_skip = re.compile('\S')
+
 
     def input(self, buf, row):
         """ Initialize the lexer with a buffer as input.
@@ -42,22 +42,24 @@ class Lexer(object):
         """
         if self.col >= len(self.buf):
             return None
-        if self.skip_whitespace:
-            m = self.re_ws_skip.search(self.buf, self.col)
-            if m:
-                self.col = m.start()
-            else:
-                return None
+        
+        m = self.re_ws_skip.search(self.buf, self.col)
+        if m:
+            self.col = m.start()
+        else:
+            return None
 
         for regex, type in self.rules:
             m = regex.match(self.buf, self.col)
             if m:
                 tok = token.Token(type, m.group(), self.row, self.col+1)
                 self.col = m.end()
+                if type == "tk_comment":
+                    return None
                 return tok
 
         # if we're here, no rule matched
-        raise Exception(self.col)
+        raise Exception("LexerError at row %s, col %s" % (self.row,self.col+1))
 
     def tokens(self):
         """ Returns an iterator to the tokens found in the buffer.
