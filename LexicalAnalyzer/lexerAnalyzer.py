@@ -1,23 +1,16 @@
 import re
 import token
 
-class Lexer(object):
-    """ A simple regex-based lexer/tokenizer.
+class LexerAnalizer(object):
+    """ Clase que genera un analizador lexico basado en expresiones regulares
     """
     def __init__(self, rules):
-        """ Create a lexer.
+        """ 
 
             rules:
-                A list of rules. Each rule is a `regex, type`
-                pair, where `regex` is the regular expression used
-                to recognize the token and `type` is the type
-                of the token to return when it's recognized.
-
-            skip_whitespace:
-                If True, whitespace (\s+) will be skipped and not
-                reported by the lexer. Otherwise, you have to
-                specify your rules for whitespace, or it will be
-                flagged as an error.
+                diccionario de reglas donde cada regla es una expresión regular que define
+                un conjunto de tokens y la llave es el tipo de cada token
+            
         """
         self.rules = []
         for regex, type in rules:
@@ -26,19 +19,18 @@ class Lexer(object):
 
 
     def input(self, buf, row):
-        """ Initialize the lexer with a buffer as input.
+        """ Inicializa el analizador con un buffer que consiste en una linea del archivo
+            de entrada
         """
         self.buf = buf
         self.col = 0
         self.row = row
 
     def token(self):
-        """ Return the next token (a Token object) found in the
-            input buffer. None is returned if the end of the
-            buffer was reached.
-            In case of a lexing error (the current chunk of the
-            buffer matches no rule), a LexerError is raised with
-            the position of the error.
+        """Retorna el siguiente token leido en el buffer de entrada, en caso de error
+           lexico el analizador aborta la lectura y manda un Exception indicando la fila 
+           y la columna donde esta el error
+        
         """
         if self.col >= len(self.buf):
             return None
@@ -62,7 +54,7 @@ class Lexer(object):
         raise Exception("LexerError at row %s, col %s" % (self.row,self.col+1))
 
     def tokens(self):
-        """ Returns an iterator to the tokens found in the buffer.
+        """ Retorna una iteracion con los tokens en el buffer
         """
         while 1:
             tok = self.token()

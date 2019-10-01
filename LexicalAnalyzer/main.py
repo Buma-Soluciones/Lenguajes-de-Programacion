@@ -33,7 +33,7 @@ if __name__ == '__main__':
         ("(#(.*?)[\r$]?\n).*",    'tk_comment'),
     ]
     
-    lx = lexerAnalyzer.Lexer(rules)
+    lx = lexerAnalyzer.LexerAnalizer(rules)
     f=open("entradas/prueba1.txt", "r")
     fline = f.readlines()
     row = 1
