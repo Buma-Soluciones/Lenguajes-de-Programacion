@@ -1,3 +1,7 @@
+"""Funcion Main del analizador Lexico, es necesario tener los casos de prueba guardados
+   en la carpeta entradas y estos casos se pasan como parametros por consola
+"""
+import sys
 import lexerAnalyzer
 
 
@@ -111,7 +115,7 @@ if __name__ == '__main__':
     ]
     
     lx = lexerAnalyzer.LexerAnalizer(rules)
-    f=open("entradas/prueba4.txt", "r")
+    f=open("entradas/%s" % sys.argv[1], "r")
     fline = f.readlines()
     row = 1
     for x in fline:

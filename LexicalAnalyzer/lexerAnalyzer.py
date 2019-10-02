@@ -1,3 +1,6 @@
+""" Implementacion basada en el codigo de Dominio publico de Eli Bendersky
+    https://github.com/eliben/bobscheme/blob/master/bob/lexer.py
+"""
 import re
 import token
 
@@ -35,17 +38,17 @@ class LexerAnalizer(object):
         if self.col >= len(self.buf):
             return None
         
-        m = self.re_ws_skip.search(self.buf, self.col)
-        if m:
-            self.col = m.start()
+        match = self.re_ws_skip.search(self.buf, self.col)
+        if match:
+            self.col = match.start()
         else:
             return None
 
         for regex, type in self.rules:
-            m = regex.match(self.buf, self.col)
-            if m:
-                tok = token.Token(type, m.group(), self.row, self.col+1)
-                self.col = m.end()
+            match = regex.match(self.buf, self.col)
+            if match:
+                tok = token.Token(type, match.group(), self.row, self.col+1)
+                self.col = match.end()
                 if type == "tk_comment":
                     return None
                 return tok
