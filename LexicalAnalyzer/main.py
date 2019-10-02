@@ -99,6 +99,7 @@ if __name__ == '__main__':
         ('<',               'tk_menor'),
         ('\-',              'tk_resta'),
         ('\*',              'tk_mult'),
+        ('\%',              'tk_porce'),
         ('\/',              'tk_div'),
         ('\(',              'tk_par_izq'),
         ('\)',              'tk_par_der'),
