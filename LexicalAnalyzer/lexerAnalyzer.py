@@ -1,4 +1,6 @@
-""" Implementacion basada en el codigo de Dominio publico de Eli Bendersky
+""" Made by Juan Sebastian Becerra 
+    Juan Sebastian Peña
+    Implementacion basada en el codigo de Dominio publico de Eli Bendersky
     https://github.com/eliben/bobscheme/blob/master/bob/lexer.py
 """
 import re

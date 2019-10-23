@@ -1,3 +1,6 @@
+"""Made by Juan Sebastian Becerra 
+   Juan Sebastian Peña
+"""
 class Token(object):
     """ La estructura del token consiste en un tipo del token, su respectivo lexema y la columna y fila
         donde se encuentra, ademas si el Token es una palabra reservada o simbolo especial, como su lexema es

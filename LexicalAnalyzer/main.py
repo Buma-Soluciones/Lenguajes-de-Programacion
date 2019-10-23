@@ -1,3 +1,6 @@
+"""Made by Juan Sebastian Becerra 
+   Juan Sebastian Peña
+"""
 """Funcion Main del analizador Lexico, es necesario tener los casos de prueba guardados
    en la carpeta entradas y estos casos se pasan como parametros por consola
 """
@@ -103,6 +106,7 @@ if __name__ == '__main__':
         ('\/',              'tk_div'),
         ('\(',              'tk_par_izq'),
         ('\)',              'tk_par_der'),
+        (':=:',              'tk_swap'),
         (':=',              'tk_asign'),
         ('!=',              'tk_diferente'),
         ('=',               'tk_igual'),  
