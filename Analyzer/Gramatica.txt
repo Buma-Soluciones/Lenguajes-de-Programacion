@@ -1,22 +1,27 @@
 S Blocks
 Blocks Global
 Blocks Resource
-Blocks Resource2
-Blocks Resource3
-Global global id List_dec end
+Global global id List_dec Declarations end
 List_dec 0
 List_dec Init_const
 List_dec List_dec
-Init_const const tk_asign Value
+Init_const const id tk_asign Expr
 Value tk_string
 Value tk_num
-Value tk_menos tk_num
-Value id
-Resource resource id tk_par_izq List_params1 tk_par_der Declarations end
-Resource2 resource id tk_par_izq List_params2 tk_par_der Declarations end
-Resource3 resource id Declarations end
-List_params2 0
-List_params2 id tk_dos_puntos Type_var
+Value tk_resta tk_num
+Value id Aux_var_matr
+Resource resource id Aux_resource Resource_aux
+Resource_aux 0
+Resource_aux Resource
+Aux_resource Declarations end
+Aux_resource tk_par_izq Aux_aux_resource
+Aux_aux_resource List_params1 tk_par_der Declarations end
+Aux_aux_resource List_params2 tk_par_der Declarations end
+Body body id Aux_body
+Aux_body 0
+Aux_body tk_par_izq Aux_aux_body
+Aux_aux_body List_params1 tk_par_der Declarations end
+Aux_aux_body List_params2 tk_par_der Declarations end
 List_params1 0
 List_params1 id tk_dos_puntos Type_var Aux_list_params1
 Aux_list_params1 0 
@@ -29,30 +34,42 @@ Type_var int
 Type_var enum
 Type_var bool
 Type_var ptr 
-Type_var string tk_cor_izq Aux_string tk_cor_der  
-Type_var tk_cor_izq tk_cor_der char 
+Type_var string tk_cor_izq Aux_string tk_cor_der
+Type_var tk_cor_izq tk_cor_der char
 Aux_string tk_num
 Aux_string tk_mult
 Declarations 0
-Declarations Init_var1
-Declarations Init_var2
-Declarations Init_const
-Declarations Asign
-Declarations Types
-Declarations Optypes
-Declarations Operations
-Declarations Decl_func
-Declarations Call_func
-Declarations Import 
-Declarations Control_struc
-Declarations Statements
-Declarations Reserve_func
-Init_var1 var id tk_dos_puntos Type_var
-Init_var2 var Aux_var tk_dos_puntos Type_var
-Aux_var id Aux_var1
-Aux_var1 tk_coma Aux_var
-Aux_var1 0
-Asign id tk_asign Value
+Declarations Asign Declarations
+Declarations Init_var Declarations
+Declarations Init_const Declarations
+Declarations Types Declarations
+Declarations Optypes Declarations
+Declarations Sem Declarations
+Declarations Operations Declarations
+Declarations Decl_func Declarations
+Declarations Call_func Declarations
+Declarations Import Declarations
+Declarations Control_struc Declarations
+Declarations Statements Declarations
+Declarations Reserve_func Declarations
+Declarations Body Declarations
+Declarations Expr Declarations
+Declarations Extends Declarations
+Declarations Final Declarations
+Asign id Aux_var_matr Aux_asign Expr
+Aux_asign tk_asign
+Aux_asign tk_suma tk_asign
+Aux_asign tk_resta tk_asign
+Aux_asign tk_swap
+Aux_asign tk_diferente
+Init_var var id Aux_var_matr Aux_init_var
+Aux_init_var tk_dos_puntos Type_var
+Aux_init_var Aux_var tk_dos_puntos Type_var
+Aux_init_var tk_asign Expr
+Aux_var tk_coma id Aux_var_matr Aux_var
+Aux_var 0
+Aux_var_matr tk_cor_izq id tk_coma id tk_cor_der
+Aux_var_matr 0
 Decl_func Decl_proc1
 Decl_func Decl_proc2
 Decl_func Decl_proc3
@@ -62,10 +79,6 @@ Decl_func Decl_procedure1
 Decl_func Decl_procedure2
 Decl_func Decl_procedure3
 Decl_func Decl_procedure4
-Decl_func Decl_Body1
-Decl_func Decl_Body2
-Decl_func Decl_Body3
-Decl_func Decl_Body4
 Decl_proc1 proc id tk_par_izq List_params2 tk_par_der Declarations end
 Decl_proc2 proc id tk_par_izq List_params1 tk_par_der Declarations end
 Decl_proc3 proc id tk_par_izq List_params3 tk_par_der Declarations end
@@ -74,17 +87,20 @@ Decl_procedure1 procedure id tk_par_izq List_params2 tk_par_der Declarations end
 Decl_procedure2 procedure id tk_par_izq List_params1 tk_par_der Declarations end
 Decl_procedure3 procedure id tk_par_izq List_params3 tk_par_der Declarations end
 Decl_procedure4 procedure id tk_par_izq List_params4 tk_par_der Declarations end
-Decl_process process id Declarations end id
-Decl_body1 body id tk_par_izq List_params2 tk_par_der Declarations end
-Decl_body2 body id tk_par_izq List_params1 tk_par_der Declarations end
-Decl_body3 body id tk_par_izq List_params3 tk_par_der Declarations end
-Decl_body4 body id tk_par_izq List_params4 tk_par_der Declarations end
-Reserve_func Reserve tk_par_izq Value tk_par_der
+Decl_process process id Aux_decl_process
+Aux_decl_process Declarations end End_process_aux
+Aux_decl_process tk_par_izq tk_par_der Declarations end End_process_aux
+End_process_aux 0
+End_process_aux id 
+Reserve_func Reserve tk_par_izq Aux_reserve
+Aux_reserve Expr Aux_Aux_reserve
+Aux_Aux_reserve tk_par_der
+Aux_Aux_reserve tk_coma id tk_par_der
 Reserve abs
 Reserve max
-Reserve min 
-Reserve pred 
-Reserve succ 
+Reserve min
+Reserve pred
+Reserve succ
 Reserve low
 Reserve high
 Reserve lb
@@ -92,16 +108,16 @@ Reserve ub
 Reserve length
 Reserve maxlength
 Reserve new
-Reserve free 
+Reserve free
 Reserve sqrt
 Reserve log
-Reserve exp 
+Reserve exp
 Reserve ceil
 Reserve floor
 Reserve round
-Reserve sin 
+Reserve sin
 Reserve cos
-Reserve tan 
+Reserve tan
 Reserve asin
 Reserve acos
 Reserve atan
@@ -116,9 +132,9 @@ Reserve remove
 Reserve seek
 Reserve where
 Reserve get
-Reserve put 
-Reserve read 
-Reserve write 
+Reserve put
+Reserve read
+Reserve write
 Reserve writes
 Reserve printf
 Reserve sprintf
@@ -128,5 +144,39 @@ Reserve numargs
 Import import id
 Control_struc If
 Control_struc Do
-Control_struc Fa
-If if Boolean_expr tk_flecha Declarations fi
+Control_struc For_all
+If if Expr tk_flecha Declarations Else fi
+Else 0
+Else tk_separa else tk_flecha Declarations
+Expr Value Type_expr
+Type_expr Binary_expr
+Type_expr Prefix_expr
+Binary_expr 0
+Binary_expr tk_menor Expr
+Binary_expr tk_mayor Expr
+Binary_expr tk_igual Expr
+Binary_expr tk_punto Expr
+Binary_expr tk_coma Expr
+Binary_expr tk_suma Expr
+Binary_expr tk_resta Expr
+Binary_expr tk_div Expr
+Binary_expr tk_mult Expr
+Prefix_expr tk_incr
+Prefix_expr tk_decr
+For_all fa Cuantificador tk_flecha Declarations af
+Cuantificador id tk_asign Expr Direction Expr Step_op Such_that_op
+Direction to
+Direction downto
+Step_op 0
+Step_op by
+Such_that_op 0
+Such_that_op suchthat
+Do do Expr tk_flecha Declarations Else od
+Extends extend id
+Final final Declarations end
+Sem sem id Aux_var_matr Aux_sem Expr
+Aux_sem tk_asign
+Aux_sem tk_suma tk_asign
+Aux_sem tk_resta tk_asign
+Aux_sem tk_swap
+Aux_sem tk_diferente
