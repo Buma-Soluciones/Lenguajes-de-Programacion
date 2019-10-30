@@ -1,0 +1,9 @@
+resource main()
+  procedure center(var s: string[*])
+      var fill := 2
+      var front := fill/2
+      s := 1
+  end
+  # read in a string; center it; repeat.
+  var str: string[20]
+end

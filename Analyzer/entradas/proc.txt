@@ -1,0 +1,6 @@
+resource a
+proc fact(n) returns prod
+    prod := 1
+    fa i := 1 to n -> prod *:= i af
+end
+end

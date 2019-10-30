@@ -24,7 +24,7 @@ Aux_aux_body List_params1 tk_par_der Declarations end
 Aux_aux_body List_params2 tk_par_der Declarations end
 List_params1 0
 List_params1 id tk_dos_puntos Type_var Aux_list_params1
-Aux_list_params1 0 
+Aux_list_params1 0
 Aux_list_params1 tk_coma List_params1
 List_params3 id
 List_params4 id Aux_list_params3
@@ -33,9 +33,10 @@ Type_var real
 Type_var int
 Type_var enum
 Type_var bool
-Type_var ptr 
+Type_var ptr
 Type_var string tk_cor_izq Aux_string tk_cor_der
 Type_var tk_cor_izq tk_cor_der char
+Type_var id
 Aux_string tk_num
 Aux_string tk_mult
 Declarations 0
@@ -60,6 +61,8 @@ Asign id Aux_var_matr Aux_asign Expr
 Aux_asign tk_asign
 Aux_asign tk_suma tk_asign
 Aux_asign tk_resta tk_asign
+Aux_asign tk_mult tk_asign
+Aux_asign tk_div tk_asign
 Aux_asign tk_swap
 Aux_asign tk_diferente
 Init_var var id Aux_var_matr Aux_init_var
@@ -70,28 +73,23 @@ Aux_var tk_coma id Aux_var_matr Aux_var
 Aux_var 0
 Aux_var_matr tk_cor_izq id tk_coma id tk_cor_der
 Aux_var_matr 0
-Decl_func Decl_proc1
-Decl_func Decl_proc2
-Decl_func Decl_proc3
-Decl_func Decl_proc4
+Decl_func Decl_proc
 Decl_func Decl_process
-Decl_func Decl_procedure1
-Decl_func Decl_procedure2
-Decl_func Decl_procedure3
-Decl_func Decl_procedure4
-Decl_proc1 proc id tk_par_izq List_params2 tk_par_der Declarations end
-Decl_proc2 proc id tk_par_izq List_params1 tk_par_der Declarations end
-Decl_proc3 proc id tk_par_izq List_params3 tk_par_der Declarations end
-Decl_proc4 proc id tk_par_izq List_params4 tk_par_der Declarations end
-Decl_procedure1 procedure id tk_par_izq List_params2 tk_par_der Declarations end
-Decl_procedure2 procedure id tk_par_izq List_params1 tk_par_der Declarations end
-Decl_procedure3 procedure id tk_par_izq List_params3 tk_par_der Declarations end
-Decl_procedure4 procedure id tk_par_izq List_params4 tk_par_der Declarations end
+Decl_func Decl_procedure
+Decl_proc proc id tk_par_izq List_params_proc tk_par_der Aux_return_proc Declarations end
+List_params_proc Expr
+Aux_return_proc 0
+Aux_return_proc returns id
+Decl_procedure procedure id tk_par_izq List_params_procedure tk_par_der Declarations end
+List_params_procedure 0
+List_params_procedure var id tk_dos_puntos Type_var Aux_list_params_procedure
+Aux_list_params_procedure 0
+Aux_list_params_procedure tk_coma List_params_procedure
 Decl_process process id Aux_decl_process
 Aux_decl_process Declarations end End_process_aux
 Aux_decl_process tk_par_izq tk_par_der Declarations end End_process_aux
 End_process_aux 0
-End_process_aux id 
+End_process_aux id
 Reserve_func Reserve tk_par_izq Aux_reserve
 Aux_reserve Expr Aux_Aux_reserve
 Aux_Aux_reserve tk_par_der
@@ -180,3 +178,15 @@ Aux_sem tk_suma tk_asign
 Aux_sem tk_resta tk_asign
 Aux_sem tk_swap
 Aux_sem tk_diferente
+Types type id tk_igual Type_decl
+Type_decl Reserve_func
+Type_decl Type_var
+Optypes optype id Aux_optypes
+Aux_optypes tk_par_izq Aux_aux_optypes
+Aux_aux_optypes List_params1 tk_par_der Op_expr Aux_return
+Aux_return 0
+Aux_return returns Optype_decl
+Optype_decl id tk_dos_puntos Type_var
+Op_expr 0
+Op_expr Expr
+Operations op id Aux_optypes
