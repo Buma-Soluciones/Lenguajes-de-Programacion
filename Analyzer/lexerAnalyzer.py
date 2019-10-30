@@ -1,11 +1,72 @@
-"""Made by Juan Sebastian Becerra 
-   Juan Sebastian Peña
+""" Made by Juan Sebastian Becerra 
+    Juan Sebastian Peña
+    Implementacion basada en el codigo de Dominio publico de Eli Bendersky
+    https://github.com/eliben/bobscheme/blob/master/bob/lexer.py
 """
-"""Funcion Main del analizador Lexico, es necesario tener los casos de prueba guardados
-   en la carpeta entradas y estos casos se pasan como parametros por consola
-"""
+import re
+import token
 import sys
-import lexerAnalyzer
+
+class LexerAnalizer(object):
+    """ Clase que genera un analizador lexico basado en expresiones regulares
+    """
+    def __init__(self, rules):
+        """ 
+
+            rules:
+                arreglo de 2-tupla () de reglas donde cada regla es una expresión regular que define
+                un conjunto de tokens y la llave es el tipo de cada token
+            
+        """
+        self.rules = []
+        for regex, type in rules:
+            self.rules.append((re.compile(regex), type))
+        self.re_ws_skip = re.compile('\S')
+
+
+    def input(self, buf, row):
+        """ Inicializa el analizador con un buffer que consiste en una linea del archivo
+            de entrada
+        """
+        self.buf = buf
+        self.col = 0
+        self.row = row
+
+    def token(self):
+        """Retorna el siguiente token leido en el buffer de entrada, en caso de error
+           lexico el analizador aborta la lectura y manda un Exception indicando la fila 
+           y la columna donde esta el error
+        
+        """
+        if self.col >= len(self.buf):
+            return None
+        
+        match = self.re_ws_skip.search(self.buf, self.col)
+        if match:
+            self.col = match.start()
+        else:
+            return None
+
+        for regex, type in self.rules:
+            match = regex.match(self.buf, self.col)
+            if match:
+                tok = token.Token(type, match.group(), self.row, self.col+1)
+                self.col = match.end()
+                if type == "tk_comment":
+                    return None
+                return tok
+
+        # if we're here, no rule matched
+        raise Exception("LexerError at row %s, col %s" % (self.row,self.col+1))
+
+    def tokens(self):
+        """ Retorna una iteracion con los tokens en el buffer
+        """
+        while 1:
+            tok = self.token()
+            if tok is None: break
+            yield tok
+
 
 rules = [
         ("\\b(global)\\b",          'global'),
@@ -119,7 +180,7 @@ rules = [
 
 def getTokens():
     analyzedTokens = []
-    lx = lexerAnalyzer.LexerAnalizer(rules)
+    lx = LexerAnalizer(rules)
     f=open("entradas/%s" % sys.argv[1], "r")
     # f=open("entradas/hello.txt", "r")
     fline = f.readlines()
@@ -138,7 +199,3 @@ def getTokens():
         
     f.close
     return analyzedTokens
-
-if __name__ == '__main__':    
-    T = getTokens()
-    print(T)
