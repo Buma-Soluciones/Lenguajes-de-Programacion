@@ -1,0 +1,131 @@
+S Blocks
+Blocks Global
+Blocks Resource
+Blocks Resource2
+Blocks Resource3
+Global global id List_dec end
+List_dec 0
+List_dec Init_const
+List_dec List_dec
+Init_const const tk_asign Value
+Value tk_string
+Value tk_num
+Value tk_menos tk_num
+Value id
+Resource resource id tk_par_izq List_params1 tk_par_der Declarations end
+Resource2 resource id tk_par_izq List_params2 tk_par_der Declarations end
+Resource3 resource id Declarations end
+List_params2 0
+List_params2 id tk_dos_puntos Type_var
+List_params1 id tk_dos_puntos Type_var Aux_list_params1
+Aux_list_params1 0 
+Aux_list_params1 tk_coma List_params1
+List_params3 id
+List_params4 id Aux_list_params3
+Aux_list_params3 tk_coma List_params3
+Type_var real
+Type_var int
+Type_var enum
+Type_var bool
+Type_var ptr 
+Type_var string tk_cor_izq Aux_string tk_cor_der  
+Type_var tk_cor_izq tk_cor_der char 
+Aux_string tk_num
+Aux_string tk_mult
+Declarations 0
+Declarations Init_var1
+Declarations Init_var2
+Declarations Init_const
+Declarations Asign
+Declarations Types
+Declarations Optypes
+Declarations Operations
+Declarations Decl_func
+Declarations Call_func
+Declarations Import 
+Declarations Control_struc
+Declarations Statements
+Declarations Reserve_func
+Init_var1 var id tk_dos_puntos Type_var
+Init_var2 var Aux_var tk_dos_puntos Type_var
+Aux_var id Aux_var1
+Aux_var1 tk_coma Aux_var
+Aux_var1 0
+Asign id tk_asign Value
+Decl_func Decl_proc1
+Decl_func Decl_proc2
+Decl_func Decl_proc3
+Decl_func Decl_proc4
+Decl_func Decl_process
+Decl_func Decl_procedure1
+Decl_func Decl_procedure2
+Decl_func Decl_procedure3
+Decl_func Decl_procedure4
+Decl_func Decl_Body1
+Decl_func Decl_Body2
+Decl_func Decl_Body3
+Decl_func Decl_Body4
+Decl_proc1 proc id tk_par_izq List_params2 tk_par_der Declarations end
+Decl_proc2 proc id tk_par_izq List_params1 tk_par_der Declarations end
+Decl_proc3 proc id tk_par_izq List_params3 tk_par_der Declarations end
+Decl_proc4 proc id tk_par_izq List_params4 tk_par_der Declarations end
+Decl_procedure1 procedure id tk_par_izq List_params2 tk_par_der Declarations end
+Decl_procedure2 procedure id tk_par_izq List_params1 tk_par_der Declarations end
+Decl_procedure3 procedure id tk_par_izq List_params3 tk_par_der Declarations end
+Decl_procedure4 procedure id tk_par_izq List_params4 tk_par_der Declarations end
+Decl_process process id Declarations end id
+Decl_body1 body id tk_par_izq List_params2 tk_par_der Declarations end
+Decl_body2 body id tk_par_izq List_params1 tk_par_der Declarations end
+Decl_body3 body id tk_par_izq List_params3 tk_par_der Declarations end
+Decl_body4 body id tk_par_izq List_params4 tk_par_der Declarations end
+Reserve_func Reserve tk_par_izq Value tk_par_der
+Reserve abs
+Reserve max
+Reserve min 
+Reserve pred 
+Reserve succ 
+Reserve low
+Reserve high
+Reserve lb
+Reserve ub
+Reserve length
+Reserve maxlength
+Reserve new
+Reserve free 
+Reserve sqrt
+Reserve log
+Reserve exp 
+Reserve ceil
+Reserve floor
+Reserve round
+Reserve sin 
+Reserve cos
+Reserve tan 
+Reserve asin
+Reserve acos
+Reserve atan
+Reserve random
+Reserve seed
+Reserve age
+Reserve nap
+Reserve open
+Reserve flush
+Reserve close
+Reserve remove
+Reserve seek
+Reserve where
+Reserve get
+Reserve put 
+Reserve read 
+Reserve write 
+Reserve writes
+Reserve printf
+Reserve sprintf
+Reserve scanf
+Reserve getarg
+Reserve numargs
+Import import id
+Control_struc If
+Control_struc Do
+Control_struc Fa
+If if Boolean_expr tk_flecha Declarations fi
