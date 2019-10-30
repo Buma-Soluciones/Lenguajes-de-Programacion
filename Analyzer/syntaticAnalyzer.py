@@ -160,7 +160,7 @@ def emparejar(tok):
 
 
 def function(S):
-    print("    "+str(S))
+    print("    " + (S))
     flag = False
     global Cut
     global predict
@@ -201,8 +201,8 @@ setTemp = predict[0][1]
 for i in range(1,len(predict)):
     if predict[i][0][0] == symbol:
         if not setTemp.isdisjoint(predict[i][1]):
-            #print("ambiguedad en el símbolo" + str(symbol))
-            print("\n")
+            print("ambiguedad en el símbolo" + str(symbol))
+            # print("\n")
     else:
         symbol = predict[i][0][0]
         setTemp = predict[i][1]
@@ -214,7 +214,7 @@ token = Tokens.pop(0)
 Tokens.append(["<", "$"])
 
 def analyzeCode():
-
+    print("------------")
     function("S")
     if not Cut:
         if token[1] != "$":
