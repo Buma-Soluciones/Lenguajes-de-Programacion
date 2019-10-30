@@ -1,0 +1,5 @@
+global sizes
+  var N := 6    # matrix dimension, default 6
+body sizes
+  getarg(1, N)
+end
