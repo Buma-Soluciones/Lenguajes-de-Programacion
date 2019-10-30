@@ -12,6 +12,12 @@ class Token(object):
         self.row = row
         self.col = col
 
+    def getToken(self):
+        if (self.type in ["tk_string", "tk_num", "id"]):
+            return ["<", self.type, self.lex, self.row, self.col, ">"]
+        else:
+            return ["<", self.type, self.row, self.col, ">"]
+
     def __str__(self):
         # if(self.lex != self.type):
         if(self.type in ["tk_string", "tk_num", "id"]):

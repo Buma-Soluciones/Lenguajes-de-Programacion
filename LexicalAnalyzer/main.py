@@ -7,9 +7,7 @@
 import sys
 import lexerAnalyzer
 
-
-if __name__ == '__main__':
-    rules = [
+rules = [
         ("\\b(global)\\b",          'global'),
         ("\\b(int)\\b",             'int'),
         ("\\b(getarg)\\b",          'getarg'),
@@ -118,9 +116,12 @@ if __name__ == '__main__':
         ("(#(.*?)[\r$]?\n).*",    'tk_comment'),
         ('[a-zA-Z_]\w*',    'id'),
     ]
-    
+
+def getTokens():
+    analyzedTokens = []
     lx = lexerAnalyzer.LexerAnalizer(rules)
     f=open("entradas/%s" % sys.argv[1], "r")
+    # f=open("entradas/hello.txt", "r")
     fline = f.readlines()
     row = 1
     for x in fline:
@@ -128,10 +129,16 @@ if __name__ == '__main__':
         lx.input(x, row)
         try:
             for tok in lx.tokens():
-                print(tok)
+                # print(tok)
+                analyzedTokens.append(tok.getToken())
         except Exception as err:
             print(err)
             break
         row += 1
         
     f.close
+    return analyzedTokens
+
+if __name__ == '__main__':    
+    T = getTokens()
+    print(T)
