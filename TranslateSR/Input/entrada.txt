@@ -1,0 +1,7 @@
+#comentario de pasarse por las tapas
+resource hello() 
+   write("hola mundito bello")
+   write(1+2+3+4)
+   write("perras en vinagre")
+   #cos(1+2+3+4)
+end

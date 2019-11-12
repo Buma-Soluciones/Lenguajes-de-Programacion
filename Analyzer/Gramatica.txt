@@ -9,7 +9,9 @@ Init_const const id tk_asign Expr
 Value tk_string
 Value tk_num
 Value tk_resta tk_num
-Value id Aux_var_matr
+Value id Aux_var_matr Aux_asign2
+Aux_asign2 0
+Aux_asign2 tk_dos_puntos Type_var
 Resource resource id Aux_resource Resource_aux
 Resource_aux 0
 Resource_aux Resource
@@ -23,7 +25,7 @@ Aux_body tk_par_izq Aux_aux_body
 Aux_aux_body List_params1 tk_par_der Declarations end
 Aux_aux_body List_params2 tk_par_der Declarations end
 List_params1 0
-List_params1 id tk_dos_puntos Type_var Aux_list_params1
+List_params1 id Aux_var_matr tk_dos_puntos Type_var Aux_list_params1
 Aux_list_params1 0
 Aux_list_params1 tk_coma List_params1
 List_params3 id
@@ -34,8 +36,9 @@ Type_var int
 Type_var enum
 Type_var bool
 Type_var ptr
+Type_var cap
 Type_var string tk_cor_izq Aux_string tk_cor_der
-Type_var tk_cor_izq tk_cor_der char
+Type_var char
 Type_var id
 Aux_string tk_num
 Aux_string tk_mult
@@ -76,8 +79,11 @@ Aux_var_matr 0
 Decl_func Decl_proc
 Decl_func Decl_process
 Decl_func Decl_procedure
-Decl_proc proc id tk_par_izq List_params_proc tk_par_der Aux_return_proc Declarations end
+Decl_proc proc id Aux_decl_proc
+Aux_decl_proc Declarations end End_process_aux
+Aux_decl_proc tk_par_izq List_params_proc tk_par_der Aux_return_proc Declarations end
 List_params_proc Expr
+List_params_proc 0
 Aux_return_proc 0
 Aux_return_proc returns id
 Decl_procedure procedure id tk_par_izq List_params_procedure tk_par_der Declarations end
@@ -93,7 +99,6 @@ End_process_aux id
 Reserve_func Reserve tk_par_izq Aux_reserve
 Aux_reserve Expr Aux_Aux_reserve
 Aux_Aux_reserve tk_par_der
-Aux_Aux_reserve tk_coma id tk_par_der
 Reserve abs
 Reserve max
 Reserve min
@@ -139,6 +144,7 @@ Reserve sprintf
 Reserve scanf
 Reserve getarg
 Reserve numargs
+Reserve rec
 Import import id
 Control_struc If
 Control_struc Do
@@ -181,7 +187,9 @@ Aux_sem tk_diferente
 Types type id tk_igual Type_decl
 Type_decl Reserve_func
 Type_decl Type_var
-Optypes optype id Aux_optypes
+Optypes optype id Op_equal Aux_optypes
+Op_equal 0
+Op_equal tk_igual
 Aux_optypes tk_par_izq Aux_aux_optypes
 Aux_aux_optypes List_params1 tk_par_der Op_expr Aux_return
 Aux_return 0
@@ -189,4 +197,12 @@ Aux_return returns Optype_decl
 Optype_decl id tk_dos_puntos Type_var
 Op_expr 0
 Op_expr Expr
-Operations op id Aux_optypes
+Operations op id Aux_operations
+Aux_operations tk_par_izq Aux_aux_operations
+Aux_aux_operations List_params_op tk_par_der Op_expr Aux_return
+List_params_op 0
+List_params_op id tk_dos_puntos Type_var Op_id Aux_list_params_op
+Op_id 0
+Op_id id
+Aux_list_params_op 0
+Aux_list_params_op tk_ptocoma List_params_op
