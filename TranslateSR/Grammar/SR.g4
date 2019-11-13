@@ -27,7 +27,7 @@ asign : Id (Tk_llave_der (Id | value) Tk_llave_izq Tk_llave_der (Id | value) Tk_
            | Tk_swap
            | Tk_diferente) expr;
 init_var : Var (Id (Tk_llave_der value Tk_llave_izq Tk_llave_der value Tk_llave_izq)? Tk_coma?)* Tk_dos_puntos datatype;
-init_const : Const Id Tk_asign value;
+init_const : Const Id Tk_asign (value | declarations);
 value : Tk_num
       | Tk_string
       | Tk_resta Tk_num
@@ -41,7 +41,7 @@ datatype : Real
          | String TK_cor_izq (Tk_num | Tk_mult) Tk_cor_der
          | Char
          | Id;
-expr : value bin_exp?;
+expr : Tk_par_izq? value bin_exp?;
 bin_exp :       (Tk_menor
                | Tk_menor_igual
                | Tk_mayor
@@ -54,7 +54,7 @@ bin_exp :       (Tk_menor
                | Tk_div
                | Tk_mult
                | Tk_incr
-               | Tk_decr) expr;
+               | Tk_decr) expr Tk_par_der?;
 
 reserve_funct : (Abs
               | Max

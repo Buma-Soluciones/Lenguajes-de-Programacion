@@ -63,10 +63,15 @@ public class Interpeter <T> extends SRBaseVisitor {
                 visitControl_struc(ctx.control_struc().get(j));
             }
         }
-        if(ctx.init_var() != null){
-            for(int j=0; j < ctx.init_var().size(); j++ ) {
+        if(ctx.init_var() != null) {
+            for (int j = 0; j < ctx.init_var().size(); j++) {
                 visitInit_var(ctx.init_var().get(j));
             }
+        }
+         if(ctx.init_const() != null){
+             for(int j=0; j < ctx.init_const().size(); j++ ) {
+                 visitInit_const(ctx.init_const().get(j));
+         }
         }
         if(ctx.asign() != null){
             for(int j=0; j < ctx.asign().size(); j++ ) {
@@ -79,6 +84,11 @@ public class Interpeter <T> extends SRBaseVisitor {
     @Override
     public T visitInit_var(SRParser.Init_varContext ctx) {
         table.put(ctx.Id(0).getText(), "0");
+        return null;
+    }
+    @Override
+    public T visitInit_const(SRParser.Init_constContext ctx) {
+        table.put(ctx.Id().getText(), ctx.value().getText());
         return null;
     }
     @Override
@@ -100,9 +110,36 @@ public class Interpeter <T> extends SRBaseVisitor {
             visitDeclarations(ctx.declarations());
             System.out.println(table.get("expr"));
         }
-        /*if (ctx.Cos() != null) {
-            return (T) Double.toString(Math.cos(  Double.parseDouble((String) visitDeclarations(ctx.declarations())) )) ;
-        }*/
+        if (ctx.Cos() != null) {
+            visitDeclarations(ctx.declarations());
+            Double cose = Math.cos( Double.parseDouble(table.get(("expr")).toString()));
+            table.put("expr",cose);
+        }
+        if (ctx.Sin() != null) {
+            visitDeclarations(ctx.declarations());
+            Double sine = Math.sin( Double.parseDouble(table.get(("expr")).toString()));
+            table.put("expr",sine);
+        }
+        if (ctx.Tan() != null) {
+            visitDeclarations(ctx.declarations());
+            Double tane = Math.tan( Double.parseDouble(table.get(("expr")).toString()));
+            table.put("expr",tane);
+        }
+        if (ctx.Abs() != null) {
+            visitDeclarations(ctx.declarations());
+            Double abse = Math.abs( Double.parseDouble(table.get(("expr")).toString()));
+            table.put("expr",abse);
+        }
+        if (ctx.Ceil() != null) {
+            visitDeclarations(ctx.declarations());
+            Double ceile = Math.ceil( Double.parseDouble(table.get(("expr")).toString()));
+            table.put("expr",ceile);
+        }
+        if (ctx.Floor() != null) {
+            visitDeclarations(ctx.declarations());
+            Double floore = Math.floor( Double.parseDouble(table.get(("expr")).toString()));
+            table.put("expr",floore);
+        }
 
         return null;
     }
@@ -160,10 +197,18 @@ public class Interpeter <T> extends SRBaseVisitor {
         Integer num1 = Integer.parseInt( (String) visitExpr(ctx.cuantificador().expr(0)));
         Integer num2 = Integer.parseInt( (String) visitExpr(ctx.cuantificador().expr(1)));
         table.put(ctx.cuantificador().Id().getText(), num1);
-        for (int i = num1; i <= num2; i++){
-            visitDeclarations(ctx.declarations());
-            table.put(ctx.cuantificador().Id().getText(),i+1);
+        if(ctx.cuantificador().To() != null){
+            for (int i = num1; i <= num2; i++){
+                visitDeclarations(ctx.declarations());
+                table.put(ctx.cuantificador().Id().getText(),i+1);
+            }
+        }else if(ctx.cuantificador().Downto() != null){
+            for (int i = num1; i >= num2; i--){
+                visitDeclarations(ctx.declarations());
+                table.put(ctx.cuantificador().Id().getText(),i-1);
+            }
         }
+
         return null;
     }
 

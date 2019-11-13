@@ -1,16 +1,44 @@
-#comentario de pasarse por las tapas
+#comentario
 resource hello()
    var a : int
+   const iwi := 400.5
+   write("esta es una constante")
+   write(iwi)
+   write("este es el cos de una constante")
+   write(cos(iwi))
+   write("este es el sin de una constante")
+   write(sin(iwi))
+   write("este es el abs del sin de una constante")
+   write(abs(sin(iwi)))
+   write("este es el ceil del abs del sin de una constante")
+   write(ceil(abs(sin(iwi))))
+   write("este es el floor del abs del sin de una constante")
+   write(floor(abs(sin(iwi))))
+   write("esta es la tan de una constante")
+   write(tan(iwi))
+   #var b : real
+   #b := cos(iwi)
+    write("esto es una variable")
    a := 2
+   a := 5 + 2
+   #write(b)
    write(a)
+   write("esto es una suma")
    write(1+2+3+4)
+   write("esto es un for")
    fa k := 1 to 5 ->
    write(k)
    af
+   write("esto es un if")
    if a <= 2 ->
    write("verdadero")
    [] ->
    write("falso")
    fi
+   #fa l := 1 to 10 ->
+    #    if ((l/2) = 0) ->
+    #        write(l)
+     #   fi
+   #fa
    #cos(1+2+3+4)
 end
