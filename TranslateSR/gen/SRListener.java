@@ -126,4 +126,54 @@ public interface SRListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReserve_funct(SRParser.Reserve_functContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SRParser#control_struc}.
+	 * @param ctx the parse tree
+	 */
+	void enterControl_struc(SRParser.Control_strucContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SRParser#control_struc}.
+	 * @param ctx the parse tree
+	 */
+	void exitControl_struc(SRParser.Control_strucContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SRParser#for_all}.
+	 * @param ctx the parse tree
+	 */
+	void enterFor_all(SRParser.For_allContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SRParser#for_all}.
+	 * @param ctx the parse tree
+	 */
+	void exitFor_all(SRParser.For_allContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SRParser#cuantificador}.
+	 * @param ctx the parse tree
+	 */
+	void enterCuantificador(SRParser.CuantificadorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SRParser#cuantificador}.
+	 * @param ctx the parse tree
+	 */
+	void exitCuantificador(SRParser.CuantificadorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SRParser#iff}.
+	 * @param ctx the parse tree
+	 */
+	void enterIff(SRParser.IffContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SRParser#iff}.
+	 * @param ctx the parse tree
+	 */
+	void exitIff(SRParser.IffContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SRParser#elsee}.
+	 * @param ctx the parse tree
+	 */
+	void enterElsee(SRParser.ElseeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SRParser#elsee}.
+	 * @param ctx the parse tree
+	 */
+	void exitElsee(SRParser.ElseeContext ctx);
 }

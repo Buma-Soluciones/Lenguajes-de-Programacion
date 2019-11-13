@@ -13,7 +13,7 @@ declarations : asign+
              //| op+
              //| funct+
              //| imports+
-             //| control_struc+
+             | control_struc+
              | reserve_funct+
              //| body+
              | expr+;
@@ -43,7 +43,9 @@ datatype : Real
          | Id;
 expr : value bin_exp?;
 bin_exp :       (Tk_menor
+               | Tk_menor_igual
                | Tk_mayor
+               | Tk_mayor_igual
                | Tk_igual
                | Tk_punto
                | Tk_coma
@@ -94,6 +96,12 @@ reserve_funct : (Abs
               | Getarg) Tk_par_izq declarations Tk_par_der;
 
 
+control_struc : for_all
+              | iff;
+for_all : Fa cuantificador Tk_flecha declarations Af;
+cuantificador : Id Tk_asign expr (To | Downto) expr By? Suchthat?;
+iff : If expr Tk_flecha declarations elsee? Fi;
+elsee : Tk_separa Else? Tk_flecha declarations;
 
 /////////////////////////////       Tokens            ////////////////////////////////////
 
@@ -221,6 +229,8 @@ Tk_llave_der : '}';
 Tk_flecha : '->';
 Tk_mayor : '>';
 Tk_menor : '<';
+Tk_mayor_igual : '>=';
+Tk_menor_igual : '<=';
 Tk_resta : '-';
 Tk_mult : '*';
 Tk_porce : '%';

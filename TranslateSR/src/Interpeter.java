@@ -53,9 +53,42 @@ public class Interpeter <T> extends SRBaseVisitor {
             String exp = "";
             for(int j=0; j < ctx.expr().size(); j++ ) {
                exp =  (String) visitExpr(ctx.expr().get(j));
+                table.put("expr",exp);
             }
-            return (T) exp;
 
+
+        }
+        if(ctx.control_struc() != null){
+            for(int j=0; j < ctx.control_struc().size(); j++ ) {
+                visitControl_struc(ctx.control_struc().get(j));
+            }
+        }
+        if(ctx.init_var() != null){
+            for(int j=0; j < ctx.init_var().size(); j++ ) {
+                visitInit_var(ctx.init_var().get(j));
+            }
+        }
+        if(ctx.asign() != null){
+            for(int j=0; j < ctx.asign().size(); j++ ) {
+                visitAsign(ctx.asign().get(j));
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public T visitInit_var(SRParser.Init_varContext ctx) {
+        table.put(ctx.Id(0).getText(), "0");
+        return null;
+    }
+    @Override
+    public T visitAsign(SRParser.AsignContext ctx) {
+        String var = ctx.Id(0).getText();
+        if(table.get(var) != null){
+            table.put(var, ctx.expr().value().getText());
+        }
+        else {
+            System.out.println("La variable " +var + " no existe" );
         }
         return null;
     }
@@ -64,7 +97,8 @@ public class Interpeter <T> extends SRBaseVisitor {
     public T visitReserve_funct(SRParser.Reserve_functContext ctx) {
         String ans = "";
         if (ctx.Write() != null) {
-            System.out.println(visitDeclarations(ctx.declarations()));
+            visitDeclarations(ctx.declarations());
+            System.out.println(table.get("expr"));
         }
         /*if (ctx.Cos() != null) {
             return (T) Double.toString(Math.cos(  Double.parseDouble((String) visitDeclarations(ctx.declarations())) )) ;
@@ -77,6 +111,9 @@ public class Interpeter <T> extends SRBaseVisitor {
     public T visitExpr(SRParser.ExprContext ctx) {
         String value =  (String) visitValue(ctx.value());
         if(ctx.bin_exp() != null){
+            if(ctx.bin_exp().Tk_igual() != null){
+                value += "=";
+            }
             value += ctx.bin_exp().getText();
         }
         try {
@@ -96,6 +133,46 @@ public class Interpeter <T> extends SRBaseVisitor {
         }
         if(ctx.Tk_string() != null){
             return (T) ctx.Tk_string().getText();
+        }
+        if(ctx.Tk_resta() != null){
+            return (T) (ctx.Tk_resta().getText() + ctx.Tk_num().getText());
+        }
+        if(ctx.Id() != null){
+
+            return (T) table.get(ctx.Id().getText()).toString();
+        }
+        return null;
+    }
+
+    @Override
+    public T visitControl_struc(SRParser.Control_strucContext ctx) {
+        if(ctx.for_all() != null){
+            visitFor_all(ctx.for_all());
+        }
+        if(ctx.iff() != null){
+            visitIff(ctx.iff());
+        }
+        return null;
+    }
+
+    @Override
+    public T visitFor_all(SRParser.For_allContext ctx) {
+        Integer num1 = Integer.parseInt( (String) visitExpr(ctx.cuantificador().expr(0)));
+        Integer num2 = Integer.parseInt( (String) visitExpr(ctx.cuantificador().expr(1)));
+        table.put(ctx.cuantificador().Id().getText(), num1);
+        for (int i = num1; i <= num2; i++){
+            visitDeclarations(ctx.declarations());
+            table.put(ctx.cuantificador().Id().getText(),i+1);
+        }
+        return null;
+    }
+
+    @Override public T visitIff(SRParser.IffContext ctx) {
+        String expr = (String) visitExpr(ctx.expr());
+        if(expr == "true"){
+            visitDeclarations(ctx.declarations());
+        } else {
+            visitDeclarations(ctx.elsee().declarations());
         }
         return null;
     }

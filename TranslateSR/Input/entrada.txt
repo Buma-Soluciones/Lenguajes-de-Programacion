@@ -1,7 +1,16 @@
 #comentario de pasarse por las tapas
-resource hello() 
-   write("hola mundito bello")
+resource hello()
+   var a : int
+   a := 2
+   write(a)
    write(1+2+3+4)
-   write("perras en vinagre")
+   fa k := 1 to 5 ->
+   write(k)
+   af
+   if a <= 2 ->
+   write("verdadero")
+   [] ->
+   write("falso")
+   fi
    #cos(1+2+3+4)
 end

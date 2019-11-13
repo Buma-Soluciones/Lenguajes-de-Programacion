@@ -81,4 +81,34 @@ public interface SRVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitReserve_funct(SRParser.Reserve_functContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SRParser#control_struc}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitControl_struc(SRParser.Control_strucContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SRParser#for_all}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFor_all(SRParser.For_allContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SRParser#cuantificador}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCuantificador(SRParser.CuantificadorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SRParser#iff}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIff(SRParser.IffContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SRParser#elsee}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElsee(SRParser.ElseeContext ctx);
 }
